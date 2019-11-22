@@ -9,7 +9,8 @@ let dosenSchema = new Schema (
         email: String,
         tlp: Number,
         matkul: String,
-        relasi: String
+        relasi: String,
+        relasi1: String
     }
 )
 

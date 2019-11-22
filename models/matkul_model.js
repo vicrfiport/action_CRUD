@@ -7,7 +7,7 @@ let matkulSchema = new Schema({
     namamatkul: String,
     dosen: String,
     semester: String,
-    
+    relasi: String
 })
 
 let Matkul = mongoose.model("Matkul",matkulSchema)

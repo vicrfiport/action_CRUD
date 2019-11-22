@@ -1,10 +1,11 @@
 const Matkul = require("../../models/matkul_model")
+const Dosen  = require("../../models/dosen_models")
 
 const create = async(req) => {
 
-    let {nomatkul,namamatkul,dosen,semester} = req.body
+    let {nomatkul,namamatkul,dosen,semester,relasi} = req.body
 
-    var insert_data = {nomatkul,namamatkul,dosen,semester}
+    var insert_data = {nomatkul,namamatkul,dosen,semester,relasi}
 
     let data = new Matkul(insert_data) 
     
@@ -22,24 +23,35 @@ const cariSemua = async() => {
    
     try {
   
-      let query = await Matkul.find({}).exec()
+      let query = await Matkul.find({}).populate([
+
+        {
+
+            path:'relasi',
+            model:Dosen
+        }
+      ]).exec()
       
-      let data = query.map((v,i) => { 
+
+    //   let data = query.map((v,i) => { 
             
-          return {
-            nomatkul : v.nomatkul,
-            namamatkul: v.namamatkul,
-            dosen: v.dosen,
-            semester: v.semester,
-            }})  
+    //       return {
+    //         nomatkul : v.nomatkul,
+    //         namamatkul: v.namamatkul,
+    //         dosen: v.dosen,
+    //         semester: v.semester,
+    //         }})  
             
-      return data
+      return query
         
     } catch (err) {
         throw err
         
     } 
-  }
+}
+
+
+
 
   const detail = async (id) => {
     
@@ -98,6 +110,6 @@ module.exports = {
     cariSemua,
     detail,
     change,
-    deleted
+    deleted,
 
         }

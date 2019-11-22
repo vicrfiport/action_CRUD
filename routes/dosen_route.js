@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {create,cariSemua,detail,change,deleted} = require("../action/Dosen/dosen_action")
+const {create,cariSemua,detail,change,deleted,} = require("../action/Dosen/dosen_action")
 
 router.post("/", async (req,res) => {
 

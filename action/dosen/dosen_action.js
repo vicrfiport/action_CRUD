@@ -1,11 +1,12 @@
 const Dosen = require("../../models/dosen_models")
 const matkul = require("../../models/matkul_model")
+const mahasiswa = require("../../models/mahasiswa_models")
 
 const create = async(req) => {
 
-    let {nik,nama,email,tlp,matkul,relasi} = req.body
+    let {nik,nama,email,tlp,matkul,relasi,relasi1} = req.body
 
-    var insert_data = {nik,nama,email,tlp,matkul,relasi}
+    var insert_data = {nik,nama,email,tlp,matkul,relasi,relasi1}
 
     let data = new Dosen(insert_data) 
     
@@ -27,7 +28,12 @@ const cariSemua = async() => {
        {
         path:'relasi',
         model:matkul
-       }
+       },
+       {
+           path:'relasi1',
+           model:mahasiswa
+
+            }
       ]).exec()
       
     //   let data = query.map((v,i) => { 
